@@ -27,14 +27,8 @@
        http://camel.apache.org/schema/cxf http://camel.apache.org/schema/cxf/camel-cxf.xsd
        http://cxf.apache.org/transports/camel http://cxf.apache.org/transports/camel.xsd">
 
-  <!-- Enable bridge between Camel Property Placeholder and Spring Property placeholder so we can use system properties
-       to dynamically set the port number for unit testing the example.  -->
-  <bean id="bridgePropertyPlaceholder" class="org.apache.camel.spring.spi.BridgePropertyPlaceholderConfigurer"/>
 
-  <bean id="roundRobinRef" class="org.apache.camel.processor.loadbalancer.RoundRobinLoadBalancer"/>
-
-  <bean class="org.apache.camel.component.cxf.transport.CamelTransportFactory" lazy-init="false">
-    <property name="bus" value="#{busFactory.createBus()}"/>
+  <bean class="org.apache.camel.component.cxf.transport.CamelTransportFactory">
     <property name="camelContext" ref="dest_context"/>
     <property name="transportIds">
       <list>
